@@ -1,0 +1,7 @@
+tunnel: cf2f6560-03b0-4e1c-ae23-9c01b7991df2
+credentials-file: /home/hatch/workspace/services/dd-api/.tunnel/creds.json
+protocol: http2
+ingress:
+  - hostname: argument-spokesman-dennis-gonna.trycloudflare.com
+    service: http://127.0.0.1:8000
+  - service: http_status:404

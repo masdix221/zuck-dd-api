@@ -1,0 +1,28 @@
+# Render Blueprint for Zuck's x402 DD API
+# Deploy: connect this repo to Render, or use the Dashboard > New > Web Service > Docker
+# Free tier: 750 hrs/month, sleeps after 15 min inactivity, wakes on request.
+
+services:
+  - type: web
+    name: zuck-dd-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /v1/ping
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: X402_TESTNET
+        value: "true"
+      - key: X402_DIRECT_PAY
+        value: "false"
+      - key: PAYEE_EVM_ADDRESS
+        value: 0xc8bdd7de62f6555beF98C69eeaB1781ae3D68590
+      - key: PAYEE_SOLANA_ADDRESS
+        value: ""
+      - key: PUBLIC_BASE_URL
+        value: https://zuck-dd-api.onrender.com
+      - key: LEDGER_DB_PATH
+        value: /tmp/payments.db
+      - key: BASE_RPC_URL
+        value: https://mainnet.base.org
