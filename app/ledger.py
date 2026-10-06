@@ -84,7 +84,13 @@ def _db_path() -> str:
 
 def init_ledger() -> None:
     """Create the ledger table if it doesn't exist. Safe to call repeatedly."""
-    with sqlite3.connect(_db_path()) as conn:
+    import os
+
+    path = _db_path()
+    parent = os.path.dirname(path)
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    with sqlite3.connect(path) as conn:
         conn.execute(_SCHEMA)
 
 
